@@ -1,0 +1,33 @@
+<div class="container margin-header-fix" ng-controller="projectController" ng-init="getProjects()">
+
+  <div class="spinner-loader" ng-if="!isLoaded">
+    <img src="./assets/images/spinner.gif" alt="">
+  </div>
+
+  <div class="col-md-3" ng-repeat="project in projects"  ng-if="isLoaded">
+      
+            <div class="row single-course-listing">
+      
+              <div class="preview-image">
+                <img src="{{project.media}}" alt="" srcset="">
+              </div>
+              <div class="course-meta-details">
+      
+                <div class="course-title">
+                  <h3>{{project.title}}</h3>
+                </div>
+                <div class="course-description">
+                  {{project.content}}
+                </div>
+                <div class="course-action-button text-center">
+                  <button class="btn btn-default" ng-if="auth.isLoggedIn() && isEnrolled(project.id)" ui-sref="projectByID({id:project.id})">View Project</button>
+                  <button class="btn btn-default" ui-sref="login" ng-if="!auth.isLoggedIn()">Login to Enroll</button>
+                  <button class="btn btn-default" ng-if="auth.isLoggedIn() && !isEnrolled(project.id)" ng-click="enrollToProject(project.id,project.title)">Enroll</button>
+                </div>
+              </div>
+      
+            </div>
+          </div>
+
+
+</div>

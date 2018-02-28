@@ -1,0 +1,34 @@
+<div class="container margin-header-fix">
+
+    <div class="spinner-loader" ng-if="isFormProcessing">
+        <img src="./assets/images/spinner.gif" alt="">
+    </div>
+    <div class="row" ng-if="!isFormProcessing">
+
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-error alert-danger" ng-bind-html="loginError">
+
+            </div>
+            <form ng-submit="login()">
+
+                <div class="form-group">
+                    <label for="email">Username/Email:</label>
+                    <input type="text" class="form-control" ng-model="credential.email" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" ng-model="credential.password" id="password" name="password">
+                </div>
+
+
+                <button type="submit" class="btn btn-default btn-block">Login</button>
+
+            </form>
+
+        </div>
+
+
+
+    </div>
+
+</div>

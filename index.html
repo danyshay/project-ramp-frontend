@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <base href="/onramplclient/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="./assets/images/onRamp.jpg">
+    <!-- <script src="./assets/jquery.min.js"></script> -->
+    <!-- <script src="./assets/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/custom.css">
+
+
+
+    <!-- Library Files -->
+    <script src="./assets/js/angular.js"></script>
+    <script src="./assets/js/angular-resource.js"></script>
+    <script src="./assets/js/angular-ui-router.js"></script>
+    <script src="./assets/js/angular-jwt.js"></script>
+    <script src="./assets/js/stateEvents.js"></script>
+
+
+    <!-- Custom Scripts -->
+    <script src="./api-resources.js"></script>
+    <script src="./services.js"></script>
+    <script src="./app.js"></script>
+</head>
+
+<body ng-app="onramp">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" [routerLink]="['/']">onRamp</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a [routerLink]="['/projects']">Find Projects</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a *ngIf="!userController.isLoggedIn()" [routerLink]="['/register']">Register</a>
+                    </li>
+                    <li>
+                        <a *ngIf="!userController.isLoggedIn()" [routerLink]="['/login']">Login</a>
+                    </li>
+
+                    <li>
+                        <a *ngIf="userController.isLoggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+                    </li>
+                    <!-- <li><a *ngIf="userController.isLoggedIn()" [routerLink]="['/login']">Profile</a></li> -->
+                    <li>
+                        <a *ngIf="userController.isLoggedIn()" (click)="logoutUser()" href="#">Log Out</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- <div ng-controller="mainController">{{message}}</div>
+    <a ui-sref="login" ui-sref-active="active">login</a>
+    <a ui-sref="projects" ui-sref-active="active">projects</a> -->
+    <ui-view>
+
+    </ui-view>
+
+</body>
+
+</html>

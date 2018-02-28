@@ -1,0 +1,68 @@
+<div class="container margin-header-fix" ng-controller="projectController" ng-init="getProjectById()">
+
+    <div class="spinner-loader" ng-if="!isLoaded">
+        <img src="./assets/images/spinner.gif" alt="">
+    </div>
+
+
+
+    <div id="singleProject" ng-if="projectLoaded">
+        <!-- Project Title -->
+        <div id="single-header">
+            <h1> {{singleProject.title}}</h1>
+        </div>
+
+        <!-- Project Body -->
+
+        <div ng-bind-html="singleProject.content" class="singleproject-body"></div>
+
+        <!-- Quiz -->
+        <div class="quizStarter" ng-if="hasProjectHasQuiz">
+            <button class="btn btn-default" ng-click="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Questions -->
+        <div id="quiz-question" ng-if="hasProjectHasQuiz && showQuiz">
+            <h5 class="projectSmallCaption">Quiz Time</h5>
+            <div class="single-quiz" ng-repeat="quiz in  projectQuiz.question track by $index">
+
+                <h4 class="quiz-title">{{quiz.title}}</h4>
+
+                <ul class="quiz-question">
+                    <li ng-repeat="answer in quiz.answers" ng-click="checkAnswer(quiz,$event)">{{answer}}</li>
+                </ul>
+
+
+            </div>
+        </div>
+
+        <div id="project-submission">
+            <h4 class="projectSmallCaption">Submit Submission</h4>
+            <textarea rows="5" cols="50" ng-model="submissionStuff.content"></textarea>
+
+            <button class="btn btn-default" type="button" ng-click="submissions()">Submit Task</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Model Box for Correct Answer -->
+    <div class="modal" ng-if="correctAnswerModal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+
+            <div id="quizCorrect">
+                <h1>Good Job</h1>
+                <h3>Lets Continue</h3>
+                <button class="btn btn-default" id="quizContinueButton" ng-click="closeCorrectModal()">Continue</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
